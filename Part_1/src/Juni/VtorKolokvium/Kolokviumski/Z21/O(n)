@@ -1,0 +1,111 @@
+package Juni.VtorKolokvium.Kolokviumski.Z21;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+class DuplicateNumberException extends Exception {
+    public DuplicateNumberException(String number) {
+        super("Duplicate number: " + number);
+    }
+}
+
+class Contact implements Comparable<Contact> {
+    String name;
+    String number;
+
+    public Contact(String name, String number) {
+        this.name = name;
+        this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+
+    @Override
+    public int compareTo(Contact o) {
+        int result = name.compareTo(o.name);
+        if (result == 0) {
+            result = number.compareTo(o.number);
+        }
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s", name, number);
+    }
+}
+
+class PhoneBook {
+    Set<Contact> allContacts;
+
+    public PhoneBook() {
+        allContacts = new TreeSet<>();
+    }
+
+    void addContact(String name, String number) throws DuplicateNumberException {
+        Contact c = new Contact(name, number);
+        if (allContacts.contains(c)) {
+            throw new DuplicateNumberException(number);
+        }
+        allContacts.add(c);
+    }
+
+    void contactsByNumber(String number) {
+        List<Contact> contactList = allContacts.stream()
+                .filter(c -> c.getNumber().contains(number))
+                .collect(Collectors.toList());
+        if (contactList.isEmpty()) {
+            System.out.println("NOT FOUND");
+            return;
+        }
+        contactList.forEach(System.out::println);
+    }
+
+    void contactsByName(String name) {
+        List<Contact> contactList = allContacts.stream()
+                .filter(c -> c.getName().contains(name))
+                .collect(Collectors.toList());
+        if (contactList.isEmpty()) {
+            System.out.println("NOT FOUND");
+            return;
+        }
+        contactList.forEach(System.out::println);
+    }
+}
+
+public class PhoneBookTest {
+
+    public static void main(String[] args) {
+        PhoneBook phoneBook = new PhoneBook();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        scanner.nextLine();
+        for (int i = 0; i < n; ++i) {
+            String line = scanner.nextLine();
+            String[] parts = line.split(":");
+            try {
+                phoneBook.addContact(parts[0], parts[1]);
+            } catch (DuplicateNumberException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            System.out.println(line);
+            String[] parts = line.split(":");
+            if (parts[0].equals("NUM")) {
+                phoneBook.contactsByNumber(parts[1]);
+            } else {
+                phoneBook.contactsByName(parts[1]);
+            }
+        }
+    }
+
+}
