@@ -1,0 +1,115 @@
+Се со цел да се подобри комуникацијата на факултетот потребно е да се направи систем за чување на контакти за секој студент.
+
+Да се креира класа Contact. За потребите на оваа класа да се дефинираат следниве методи:
+
+Contact(String date) - конструктор каде што date е датумот кога е креиран контактот даден во следниов формат YYYY-MM-DD
+isNewerThan(Contact c):boolean - метод кој враќа true доколку контактот е креиран подоцна од контактот c и обратно
+getType():String - метод кој враќа вредност "Email" или "Phone" во зависност од типот на контактот
+Од класата Contact не треба да може директно да се инстанцира објект.
+
+Од оваа класа се изведуваат класите EmailContact и PhoneContact.
+
+За класата EmailContact дополнително се чува e-маил кој што е од типот String. Да се дефинираат следниве методи:
+
+EmailContact(String date, String email) - конструктор
+getEmail():String - метод кој што го враќа е-маилот
+getType():String- имплементација на методот од класата Contact
+За класата PhoneContact дополнително се чува телефонски број кој што е од типот String и оператор кој што е енумерација
+и се дефинира на следниов начин enum Operator { VIP, ONE, TMOBILE }. За оваа класа да се дефинираат следниве методи:
+
+PhoneContact(String date, String phone) - конструктор
+getPhone():String - метод кој што го враќа телефонскиот број
+getOperator():Operator - метод кој што го враќа операторот (070, 071, 072 – TMOBILE, 075,076 – ONE, 077, 078 – VIP)
+getType():String- имплементација на методот од класата Contact
+*Забелешка: Сите телефонски броеви се во формат 07X/YYY-ZZZ каде што X има вредност {0,1,2,5,6,7,8}
+
+Потоа да се дефинира класата Student каде што се чува низа на контакти за секој студент
+
+Student(String firstName, String lastName, String city, int age, long index) – конструктор
+addEmailContact(String date, String email):void – метод што додава е-маил контакт во низата на контакти
+addPhoneContact(String date, String phone):void – метод што додава телефонски контакт во низата на контакти
+getEmailContacts():Contact[] – враќа низа на email контактите на студентот
+getPhoneContacts():Contact[] – враќа низа на phone контактите на студентот
+getCity():String - метод кој го враќа градот
+getFullName():String - метод кој го враќа целосното име на студентот во формат IME PREZIME
+getIndex():long - метод кој го враќа индексот на студентот
+getLatestContact():Contact – го враќа најновиот контакт (според датум) од студентот
+toString() – претставува JSON репрезентација на класата студент пр. {"ime":"Jovan", "prezime":"Jovanov", "vozrast":20,
+"grad":"Skopje", "indeks":101010, "telefonskiKontakti":["077/777-777", "078/888-888"],
+"emailKontakti":["jovan.jovanov@example.com", "jovanov@jovan.com", "jovan@jovanov.com"]}
+*Забелешка: Во класата Student да се чува само една низа од контакти Contact[],
+а не две низи одделно (PhoneContact[] и EmailContact[])
+
+*Напомена да не се користи instanceOf или getClass при имплементација на овие методи
+
+Дополнително да се дефинира класа Faculty. За оваа класа да се дефинираат следниве методи:
+
+Faculty(String name, Student [] students) – конструктор
+countStudentsFromCity(String cityName):int – враќа колку студенти има од даден град
+getStudent(long index):Student – метод кој го враќа студентот кој го има дадениот индекс
+getAverageNumberOfContacts():double – враќа просечен број на контакти по студент
+getStudentWithMostContacts():Student – метод кој го враќа студентот со најмногу контакти (доколку има повеќе
+студенти со ист број на контакти да го врати студентот со најголем индекс)
+toString() – претставува JSON репрезентација на класата Faculty пример:
+ {"fakultet":"FINKI", "studenti":[STUDENT1, STUDENT2, ...]} каде што треба да има целосни информации за секој студент.
+
+33
+CREATE_FACULTY FINKI
+3
+Sanja Trajkova Stip 29 93245091
+Petar Petrov Strumica 29 81460497
+Mile Jovanov Skopje 24 81974965
+ADD_PHONE_CONTACT 81460497 2001-03-19 070/748-540
+ADD_EMAIL_CONTACT 93245091 2006-07-13 crxkpbsn@yahoo.com
+ADD_EMAIL_CONTACT 81974965 2010-08-01 eikyqppxexavtua@gmail.com
+ADD_PHONE_CONTACT 81974965 2007-07-27 078/186-236
+ADD_EMAIL_CONTACT 81460497 2003-05-12 oxaazbvw@gmail.com
+ADD_EMAIL_CONTACT 93245091 2010-04-06 ueyjikz@cs.org.mk
+ADD_PHONE_CONTACT 93245091 2000-06-28 070/399-762
+ADD_PHONE_CONTACT 81974965 2001-08-17 077/524-486
+ADD_PHONE_CONTACT 93245091 2009-10-23 077/850-741
+ADD_PHONE_CONTACT 81974965 2000-07-17 077/848-344
+ADD_PHONE_CONTACT 81460497 2005-05-02 071/521-435
+ADD_EMAIL_CONTACT 81974965 2013-01-01 rpzdnz@hotmail.com
+ADD_PHONE_CONTACT 93245091 2000-02-16 075/915-241
+ADD_EMAIL_CONTACT 93245091 2013-04-22 hzmhamihjyf@cs.org.mk
+ADD_EMAIL_CONTACT 81974965 2005-08-30 qtyagx@finki.ukim.mk
+ADD_EMAIL_CONTACT 81460497 2010-05-25 bvmriiamvibscw@finki.ukim.mk
+CHECK_SIMPLE
+ADD_PHONE_CONTACT 81974965 2010-12-25 077/428-158
+CHECK_SIMPLE
+ADD_PHONE_CONTACT 81460497 2011-12-04 076/057-448
+ADD_PHONE_CONTACT 93245091 2002-10-27 078/187-757
+ADD_PHONE_CONTACT 81460497 2005-02-04 077/341-394
+CHECK_DATES
+CHECK_DATES
+ADD_EMAIL_CONTACT 93245091 2003-02-29 maldkektkff@cs.org.mk
+CHECK_DATES
+CHECK_SIMPLE
+ADD_PHONE_CONTACT 81974965 2002-11-03 075/905-387
+CHECK_SIMPLE
+CHECK_SIMPLE
+ADD_PHONE_CONTACT 81974965 2005-11-22 071/160-774
+PRINT_FACULTY_METHODS
+
+Average number of contacts: 5.33
+Number of students from Strumica: 1
+Average number of contacts: 5.67
+Number of students from Strumica: 1
+Latest contact: 076/057-448 (ONE)
+Number of email and phone contacts: 2 4
+Comparing dates: false
+Latest contact: 076/057-448 (ONE)
+Number of email and phone contacts: 2 4
+Comparing dates: true
+Latest contact: hzmhamihjyf@cs.org.mk
+Number of email and phone contacts: 4 4
+Comparing dates: true
+Average number of contacts: 7.00
+Number of students from Stip: 1
+Average number of contacts: 7.33
+Number of students from Skopje: 1
+Average number of contacts: 7.33
+Number of students from Skopje: 1
+Faculty: {"fakultet":"FINKI", "studenti":[{"ime":"Sanja", "prezime":"Trajkova", "vozrast":29, "grad":"Stip", "indeks":93245091, "telefonskiKontakti":["070/399-762", "077/850-741", "075/915-241", "078/187-757"], "emailKontakti":["crxkpbsn@yahoo.com", "ueyjikz@cs.org.mk", "hzmhamihjyf@cs.org.mk", "maldkektkff@cs.org.mk"]}, {"ime":"Petar", "prezime":"Petrov", "vozrast":29, "grad":"Strumica", "indeks":81460497, "telefonskiKontakti":["070/748-540", "071/521-435", "076/057-448", "077/341-394"], "emailKontakti":["oxaazbvw@gmail.com", "bvmriiamvibscw@finki.ukim.mk"]}, {"ime":"Mile", "prezime":"Jovanov", "vozrast":24, "grad":"Skopje", "indeks":81974965, "telefonskiKontakti":["078/186-236", "077/524-486", "077/848-344", "077/428-158", "075/905-387", "071/160-774"], "emailKontakti":["eikyqppxexavtua@gmail.com", "rpzdnz@hotmail.com", "qtyagx@finki.ukim.mk"]}]}
+Student with most contacts: {"ime":"Mile", "prezime":"Jovanov", "vozrast":24, "grad":"Skopje", "indeks":81974965, "telefonskiKontakti":["078/186-236", "077/524-486", "077/848-344", "077/428-158", "075/905-387", "071/160-774"], "emailKontakti":["eikyqppxexavtua@gmail.com", "rpzdnz@hotmail.com", "qtyagx@finki.ukim.mk"]}

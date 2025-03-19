@@ -1,0 +1,61 @@
+Да се имплементира класа FilterAndSort со статички генерички метод execute. Методот прима два аргументи, листа од
+споредливи објекти и предикат кој се однесува на истиот тип на објекти. Методот враќа резултат листа од истиот тип на
+објекти кои ги исполнуваат предикатот, сортирани во опаѓачки редослед.
+
+Методот требa да фрли исклучок од тип EmptyResultException доколку ниту еден елемент од влезната листа не го исполнува
+предикатот.
+
+Во main функцијата на класата FilterAndSortTest, во деловите означени со TODO потребно е да се повика методот execute за
+креираните листи од објекти и да се испечатат резултатите од методот.
+
+--
+
+Implement a class FilterAndSort with a static generic method execute. The method takes two arguments: a list of comparable
+objects and a predicate that applies to the same type of objects. The method returns a result list of the same type of
+objects that satisfy the predicate, sorted in descending order.
+
+The method should throw an exception of type EmptyResultException if none of the elements in the input list satisfy the
+predicate.
+
+In the main function of the FilterAndSortTest class, in the parts marked with TODO, the execute method should be invoked
+for the created lists of objects, and the results of the method should be printed.
+
+1
+10
+1
+216469 9 8 10 9 10 8 10 9 9 10 8 10 8 8 10 8 10 8 8 10 9 10 8 10 9
+208829 8 10 9 8 8 9 9 8 8 9 8 9 8 9 8 9 9 9 8 10 10
+228053 10 10 9 10 9 9 9 9 8 9 8 8 8 10 8 9 10 9 10 10
+208611 8 9 9 9 9 10 10 10 8 8 8 8 10 9 9 10 10 8 8 10 10 9 10 8 8 9 10 10 9 8 10 8 9 8 9 9 9 10 8 8
+207667 8 10 9 8 9 9 9 9 10 9 10 10 8 9 8 8 9 10 10 9 9 10 8 9 8 8 9 10 10 10 8 8 8 8 8
+204802 9 8 10 10 9 10 8 8 10 8 8 10 9 9 9 9 10 8 10 9 8 8 8 9 8 10 8 9 8 9 8 10 8 10 10 9 8 10
+214009 9 9 9 9 9 9 9 10 10 10 9 10 8 8 8 8 8 8 10 9 9 10 9 9 8 10 8 10 9
+217971 9 8 9 9 9 10 10 10 8 9 8 9 10 8 9 9 9 9 9 9
+216913 8 10 8 8 9 9 9 10 9 10 10 10 10 8 10 9 9 8 10 10 10 9 8 10 10 9 8 10 9
+239243 10 10 8 10 9 8
+
+Student 208611 (4 year) - 40/40 passed exam, average grade 8.98.
+Lab assistant points: 8.98
+Student 204802 (4 year) - 38/40 passed exam, average grade 8.92.
+Lab assistant points: 8.48
+Student 216913 (3 year) - 29/30 passed exam, average grade 9.21.
+Lab assistant points: 8.31
+Student 214009 (3 year) - 29/30 passed exam, average grade 9.00.
+Lab assistant points: 8.12
+
+2
+10
+320
+394
+60
+625
+803
+180
+344
+709
+210
+624
+
+210
+180
+60

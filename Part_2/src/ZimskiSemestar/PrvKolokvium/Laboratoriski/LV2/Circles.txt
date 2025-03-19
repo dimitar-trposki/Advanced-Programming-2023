@@ -1,0 +1,152 @@
+Да се дефинира интерфејс Movable што ќе ги дефинира основните својства на еден движечки објект:
+
+движење нагоре (void moveUp())
+движење надолу (void moveLeft())
+движење надесно (void moveRight())
+движење налево (void moveLeft())
+пристап до моменталните x,y координати на објектот (int getCurrentXPosition() и int getCurrentYPosition()).
+Постојат два типа на движечки објекти: движечка точка (MovingPoint) и движечки круг (MovingCircle). Да се дефинираат
+овие две класи коишто го имплементираат интерфејсот Movable.
+
+Во класата MovingPoint се чуваат информации за:
+
+x и y координати (цели броеви)
+xSpeed и ySpeed : степенот на поместување на движечката точка во x насока и y насока (цели броеви)
+За класата да се имплементираат:
+
+конструктор со аргументи: MovablePoint(int x, int y, int xSpeed, int ySpeed),
+методите наведени во интерфејсот Movable
+toString метод кој дава репрезентација на објектите во следнот формат Movable point with coordinates (5,35)
+Во класата MovingCircle се чуваат информации за:
+
+радиусот на движечкиот круг (цел број)
+центарот на движечкиот круг (објект од класата MovingPoint).
+За класата да се имплементираат:
+
+конструктор со аргументи: MovableCircle(int radius, MovablePoint center)
+методите наведени во интерфејсот Movable
+toString метод којшто дава репрезентација на објектите во следниот формат Movable circle with center coordinates (48,21) and radius 3
+Првите четири методи од Movable (moveUp, modeDown, moveRight, moveLeft) треба да фрлат исклучок од тип
+ObjectCanNotBeMovedException доколку придвижувањето во соодветната насока не е возможно, односно со придвижувањето се
+излегува од дефинираниот простор во класата MovablesCollection. При движење на објекти од тип MovableCircle се смета
+дека кругот излегол од просторот, доколку неговиот центар излезе од центар. Дозволено е дел до кругот да излезе од просторот,
+доколку центарот е се уште во просторот. Справете се со овие исклучоци на соодветните места. Погледнете во тест примерите
+какви пораки треба да се печатат кога ќе се фати исклучок од овој тип и имплементирајте го истото.
+
+Да се дефинира класа MovablesCollection во која што ќе се чуваат информации за:
+
+низа од движечки објекти (Movable [] movable)
+статичка променлива за максималната вредност на координатата X (минималната е предодредена на 0)
+статичка променлива за максималната вредност на координатата Y (минималната е предодредена на 0)
+За класата да се имплементираат следните методи:
+
+конструктор MovablesCollection(int x_MAX, int y_MAX)
+void addMovableObject(Movable m) - метод за додавање на движечки објект во колекцијата од сите движечки објекти.
+Пред да се додади објектот, мора да се провери дали истиот е може да се вклопи во дефинираниот простор, односно истиот
+да не излегува од границите 0-X_MAX за x координатата и 0-Y_MAX за y координатата. Доколку станува збор за движечки круг,
+потребно е целиот круг да се наоѓа во наведениот интервал на вредности. Доколку движечкиот објект не може да биде вклопен
+во просторот, да се фрли исклучок од тип MovableObjectNotFittableException. Потребно е да се справите со исклучокот на
+соодветното место во main методот. Погледнете во тест примерите какви пораки треба да се печатат кога ќе се фати исклучок
+од овој тип и имплементирајте го истото.
+void moveObjectsFromTypeWithDirection (TYPE type, DIRECTION direction)- метод за придвижување на движечките објекти од
+тип type во насока direction. TYPE и DIRECTION се енумерации кои се задедени во почетниот код. Во зависност од насоката
+зададена во аргументот, да се повика соодветниот метод за придвижување.
+toString() - метод кој дава репрезентација на колекцијата од движечки објекти во следниот формат: Collection of movable
+objects with size [големина на колекцијата]: , по што во нов ред следуваат информации за сите движечки објекти во колекцијата.
+
+3
+1 21 9 19 20 32
+1 18 41 18 13 32
+0 13 55 18 4
+
+===COLLECTION CONSTRUCTOR AND ADD METHOD TEST===
+Movable circle with center (21,9) and radius 32 can not be fitted into the collection
+Movable circle with center (18,41) and radius 32 can not be fitted into the collection
+Collection of movable objects with size 1:
+Movable point with coordinates (13,55)
+
+MOVE POINTS TO THE LEFT
+Point (-5,55) is out of bounds
+Collection of movable objects with size 1:
+Movable point with coordinates (13,55)
+
+MOVE CIRCLES DOWN
+Collection of movable objects with size 1:
+Movable point with coordinates (13,55)
+
+CHANGE X_MAX AND Y_MAX
+MOVE POINTS TO THE RIGHT
+Collection of movable objects with size 1:
+Movable point with coordinates (31,55)
+
+MOVE CIRCLES UP
+Collection of movable objects with size 1:
+Movable point with coordinates (31,55)
+
+10
+0 38 42 15 1
+1 8 55 7 24 39
+1 2 55 16 10 37
+0 49 41 9 29
+0 5 33 16 26
+1 23 17 13 11 15
+1 42 11 18 27 15
+1 23 25 0 26 16
+0 36 8 14 24
+0 3 41 1 0
+
+===COLLECTION CONSTRUCTOR AND ADD METHOD TEST===
+Movable circle with center (8,55) and radius 39 can not be fitted into the collection
+Movable circle with center (2,55) and radius 37 can not be fitted into the collection
+Movable circle with center (42,11) and radius 15 can not be fitted into the collection
+Collection of movable objects with size 7:
+Movable point with coordinates (38,42)
+Movable point with coordinates (49,41)
+Movable point with coordinates (5,33)
+Movable circle with center coordinates (23,17) and radius 15
+Movable circle with center coordinates (23,25) and radius 16
+Movable point with coordinates (36,8)
+Movable point with coordinates (3,41)
+
+MOVE POINTS TO THE LEFT
+Point (-11,33) is out of bounds
+Collection of movable objects with size 7:
+Movable point with coordinates (23,42)
+Movable point with coordinates (40,41)
+Movable point with coordinates (5,33)
+Movable circle with center coordinates (23,17) and radius 15
+Movable circle with center coordinates (23,25) and radius 16
+Movable point with coordinates (22,8)
+Movable point with coordinates (2,41)
+
+MOVE CIRCLES DOWN
+Point (23,-1) is out of bounds
+Collection of movable objects with size 7:
+Movable point with coordinates (23,42)
+Movable point with coordinates (40,41)
+Movable point with coordinates (5,33)
+Movable circle with center coordinates (23,6) and radius 15
+Movable circle with center coordinates (23,25) and radius 16
+Movable point with coordinates (22,8)
+Movable point with coordinates (2,41)
+
+CHANGE X_MAX AND Y_MAX
+MOVE POINTS TO THE RIGHT
+Collection of movable objects with size 7:
+Movable point with coordinates (38,42)
+Movable point with coordinates (49,41)
+Movable point with coordinates (21,33)
+Movable circle with center coordinates (23,6) and radius 15
+Movable circle with center coordinates (23,25) and radius 16
+Movable point with coordinates (36,8)
+Movable point with coordinates (3,41)
+
+MOVE CIRCLES UP
+Collection of movable objects with size 7:
+Movable point with coordinates (38,42)
+Movable point with coordinates (49,41)
+Movable point with coordinates (21,33)
+Movable circle with center coordinates (23,17) and radius 15
+Movable circle with center coordinates (23,51) and radius 16
+Movable point with coordinates (36,8)
+Movable point with coordinates (3,41)
